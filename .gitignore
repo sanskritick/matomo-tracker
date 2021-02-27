@@ -1,0 +1,10 @@
+build
+docs
+vendor
+coverage
+.php_cs.cache
+.phpunit.result.cache
+.phpunit.xml.dist
+.idea
+.phpintel
+.DS_Store
