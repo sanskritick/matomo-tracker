@@ -1,11 +1,12 @@
 # MatomoTracker
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
+[![Latest Stable Version](https://poser.pugx.org/sanskritick/matomo-tracker/v)](//packagist.org/packages/sanskritick/matomo-tracker)
+[![Total Downloads](https://poser.pugx.org/sanskritick/matomo-tracker/downloads)](//packagist.org/packages/sanskritick/matomo-tracker)
+[![License](https://poser.pugx.org/sanskritick/matomo-tracker/license)](//packagist.org/packages/sanskritick/matomo-tracker)
 
 ## About
 
-The `sanskritick\matomo-tracker` Laravel package is a wrapper for the `matomo/matomo-php-tracker`. The Matomo php tracker allows serverside tracking.
+The `sanskritick\matomo-tracker` Laravel package is a wrapper for the `matomo\matomo-php-tracker`. The Matomo php tracker allows serverside tracking.
 
 ## Features
 
