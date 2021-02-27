@@ -5,7 +5,7 @@
 
 ## About
 
-The `Sanskriticktick\laravel-matomo-tracker` Laravel package is a wrapper for the `piwik\piwik-php-tracker`. The Piwik php tracker allows serverside tracking.
+The `sanskritick\matomo-tracker` Laravel package is a wrapper for the `matomo/matomo-php-tracker`. The Matomo php tracker allows serverside tracking.
 
 ## Features
 
@@ -18,10 +18,10 @@ Feel free to suggest new features.
 
 Via Composer
 
-Require the `Sanskriticktick\laravel-matomo-tracker` package in your `composer.json` and update your dependencies:
+Require the `sanskritick\matomo-tracker` package in your `composer.json` and update your dependencies:
 
 ``` bash
-composer require Sanskriticktick/laravel-matomo-tracker
+composer require sanskritick\matomo-tracker
 ```
 
 Publish the config file (optional)
@@ -59,7 +59,7 @@ MatomoTracker::doTrackPageView('Page Title')
 
 #### Basic functionality
 
-Please see the https://developer.matomo.org/api-reference/PHP-Piwik-Tracker page for basic method documentation.
+Please see the [https://developer.matomo.org/api-reference/PHP-Matomo-Tracker](Matomo Tracker) page for basic method documentation.
 
 Additionally there are some Methods to simplyfy the usage:
 
@@ -95,7 +95,7 @@ For setting up queues, find the documentation on [Laravel Queues](https://larave
 
 ### Settings
 
-Have a look in the https://developer.matomo.org/api-reference/PHP-Piwik-Tracker page for basic settings documentation.
+Have a look in the [https://developer.matomo.org/api-reference/PHP-Matomo-Tracker](Matomo Tracker) page for basic settings documentation.
 
 Additionaly these settings are available:
 
@@ -115,21 +115,16 @@ Please see [contributing.md](contributing.md) for details and a todolist.
 
 ## Security
 
-If you discover any security related issues, please email alexander.schmidhuber@gmail.com instead of using the issue tracker.
-
-## Credits
-
-- [Alexander Schmidhuber][link-author]
-- [All Contributors][link-contributors]
+Please see [security.md](security.md) for details and a todolist.
 
 ## License
 
-BSD-3-Clause. Please see the [license file](license.md) for more information.
+MIT. Please see the [license file](license.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/Sanskriticktick/laravel-matomo-tracker.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/Sanskriticktick/laravel-matomo-tracker.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/sanskritick/matomo-tracker.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/sanskritick/matomo-tracker.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/Sanskriticktick/laravel-matomo-tracker
-[link-downloads]: https://packagist.org/packages/Sanskriticktick/laravel-matomo-tracker
-[link-author]: https://github.com/Sanskriticktick
+[link-packagist]: https://packagist.org/packages/sanskritick/matomo-tracker
+[link-downloads]: https://packagist.org/packages/sanskritick/matomo-tracker
+[link-author]: https://github.com/sanskritick
 [link-contributors]: ../../contributors
