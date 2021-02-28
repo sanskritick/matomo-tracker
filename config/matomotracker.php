@@ -10,7 +10,7 @@ return [
     /**
      * The id of the site that should be tracked
      */
-    'idSite' => env('MATOMO_SITE_ID', 1),
+    'siteId' => env('MATOMO_SITE_ID', 1),
 
     /**
      * The auth token of your user

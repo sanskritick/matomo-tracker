@@ -41,7 +41,7 @@ class MatomoTrackerServiceProvider extends ServiceProvider
                 $this->request,
                 Config::get('matomotracker.siteId'),
                 Config::get('matomotracker.url'),
-                Config::get('matomotracker.tockenAuth')
+                Config::get('matomotracker.tokenAuth')
             );
         });
     }

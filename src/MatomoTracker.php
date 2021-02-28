@@ -12,35 +12,35 @@ class MatomoTracker extends GlobalMatomoTracker
     /** @var string */
     protected $apiUrl;
     /** @var int */
-    protected $idSite;
+    protected $siteId;
     /** @var string */
     protected $tokenAuth;
     /** @var string */
     protected $queue;
 
-    public function __construct(?Request $request, ?int $idSite = null, ?string $apiUrl = null, ?string $tokenAuth = null)
+    public function __construct(?Request $request, ?int $siteId = null, ?string $apiUrl = null, ?string $tokenAuth = null)
     {
-        $this->tokenAuth = $tokenAuth ?: config('matomotracker.tockenAuth');
+        $this->tokenAuth = $tokenAuth ?: config('matomotracker.tokenAuth');
         $this->queue = config('matomotracker.queue', 'matomotracker');
 
         $this->setTokenAuth(!is_null($tokenAuth) ? $tokenAuth : config('matomotracker.tokenAuth'));
-        $this->setMatomoVariables($request, $idSite, $apiUrl);
+        $this->setMatomoVariables($request, $siteId, $apiUrl);
     }
 
     /**
      * Overrides the PiwikTracker method and uses the \Illuminate\Http\Request for filling in the server vars.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $idSite
+     * @param int $siteId
      * @param string $apiUrl
      *
      * @return void
      */
-    private function setMatomoVariables(Request $request, int $idSite = null, string $apiUrl = null)
+    private function setMatomoVariables(Request $request, int $siteId = null, string $apiUrl = null)
     {
 
         $this->apiUrl = $apiUrl ?: config('matomotracker.url');
-        $this->idSite = $idSite ?: config('matomotracker.idSite');
+        $this->siteId = $siteId ?: config('matomotracker.siteId');
 
         $this->ecommerceItems = array();
         $this->attributionInfo = false;
@@ -67,7 +67,7 @@ class MatomoTracker extends GlobalMatomoTracker
         $this->localSecond = false;
         $this->idPageview = false;
 
-        // $this->idSite = $this->idSite;
+        // $this->siteId = $this->siteId;
         $this->urlReferrer = !empty($request->server('HTTP_REFERER')) ? $request->server('HTTP_REFERER') : false;
         $this->pageCharset = self::DEFAULT_CHARSET_PARAMETER_VALUES;
         $this->pageUrl = self::getCurrentUrl();
