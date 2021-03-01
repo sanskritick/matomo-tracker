@@ -15,6 +15,7 @@ class MatomoTrackerServiceProvider extends ServiceProvider
      * Perform post-registration booting of services.
      *
      * @return void
+     * @param Request $request
      */
     public function boot(Request $request)
     {
@@ -36,7 +37,7 @@ class MatomoTrackerServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/matomotracker.php', 'matomotracker');
 
         // Register the service the package provides.
-        $this->app->singleton('matomotracker', function ($app) {
+        $this->app->singleton('matomotracker', function () {
             return new MatomoTracker(
                 $this->request,
                 Config::get('matomotracker.siteId'),
