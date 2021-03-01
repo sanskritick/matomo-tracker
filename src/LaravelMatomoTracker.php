@@ -4,9 +4,9 @@ namespace Sanskritick\MatomoTracker;
 
 use Exception;
 use Illuminate\Http\Request;
-use MatomoTracker as GlobalMatomoTracker;
+use MatomoTracker as MatomoTracker;
 
-class MatomoTracker extends GlobalMatomoTracker
+class LaravelMatomoTracker extends MatomoTracker
 {
 
     /** @var string */

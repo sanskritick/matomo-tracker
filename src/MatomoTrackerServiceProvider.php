@@ -38,7 +38,7 @@ class MatomoTrackerServiceProvider extends ServiceProvider
 
         // Register the service the package provides.
         $this->app->singleton('matomotracker', function () {
-            return new MatomoTracker(
+            return new LaravelMatomoTracker(
                 $this->request,
                 Config::get('matomotracker.siteId'),
                 Config::get('matomotracker.url'),
