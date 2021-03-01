@@ -6,7 +6,7 @@
 
 ## About
 
-The `sanskritick\matomo-tracker` Laravel package is a wrapper for the `matomo\matomo-php-tracker`. The Matomo php tracker allows serverside tracking.
+The `sanskritick/matomo-tracker` Laravel package is a wrapper for the `matomo/matomo-php-tracker`. The Matomo php tracker allows serverside tracking.
 
 ## Features
 
@@ -19,10 +19,10 @@ Feel free to suggest new features.
 
 Via Composer
 
-Require the `sanskritick\matomo-tracker` package in your `composer.json` and update your dependencies:
+Require the `sanskritick/matomo-tracker` package in your `composer.json` and update your dependencies:
 
 ``` bash
-composer require sanskritick\matomo-tracker
+composer require sanskritick/matomo-tracker
 ```
 
 Publish the config file (optional)
