@@ -6,9 +6,27 @@ use Exception;
 use Illuminate\Http\Request;
 use MatomoTracker as MatomoTracker;
 
+/**
+ * @method static mixed doTrackDownload(string $actionUrl)
+ * @method static mixed doTrackOutlink(string $actionUrl)
+ * @method static mixed doTrackPageView(string $documentTitle)
+ * @method static mixed doTrackEvent(string $category, string $action, string $name = false, $value = false)
+ * @method static mixed doTrackContentImpression(string $contentName, string $contentPiece = 'Unknown', $contentTarget = false)
+ * @method static mixed doTrackContentInteraction(string $interaction, string $contentName, string $contentPiece = 'Unknown', $contentTarget = false)
+ * @method static void queuePageView(string $documentTitle)
+ * @method static void queueEvent(string $category, string $action, $name = false, $value = false)
+ * @method static void queueContentImpression(string $contentName, string $contentPiece = 'Unknown', $contentTarget = false)
+ * @method static void queueContentInteraction(string $interaction, string $contentName, string $contentPiece = 'Unknown', $contentTarget = false)
+ * @method static void queueSiteSearch(string $keyword, string $category = '', $countResults = false)
+ * @method static void queueGoal($idGoal, $revencue = 0.0)
+ * @method static void queueDownload(string $actionUrl)
+ * @method static void queueOutlink(string $actionUrl)
+ * @method static void queueEcommerceCartUpdate(float $grandTotal)
+ * @method static void queueEcommerceOrder(float $orderId, float $grandTotal, float $subTotal = 0.0, float $tax = 0.0, float $shipping = 0.0, float $discount = 0.0)
+ * @method static void queueBulkTrack()
+ */
 class LaravelMatomoTracker extends MatomoTracker
 {
-
     /** @var string */
     protected $apiUrl;
     /** @var int */
@@ -23,7 +41,7 @@ class LaravelMatomoTracker extends MatomoTracker
         $this->tokenAuth = $tokenAuth ?: config('matomotracker.tokenAuth');
         $this->queue = config('matomotracker.queue', 'matomotracker');
 
-        $this->setTokenAuth(!is_null($tokenAuth) ? $tokenAuth : config('matomotracker.tokenAuth'));
+        $this->setTokenAuth(! is_null($tokenAuth) ? $tokenAuth : config('matomotracker.tokenAuth'));
         $this->setMatomoVariables($request, $siteId, $apiUrl);
     }
 
@@ -38,18 +56,17 @@ class LaravelMatomoTracker extends MatomoTracker
      */
     private function setMatomoVariables(Request $request, int $siteId = null, string $apiUrl = null)
     {
-
         $this->apiUrl = $apiUrl ?: config('matomotracker.url');
         $this->siteId = $siteId ?: config('matomotracker.siteId');
 
-        $this->ecommerceItems = array();
+        $this->ecommerceItems = [];
         $this->attributionInfo = false;
         $this->eventCustomVar = false;
         $this->forcedDatetime = false;
         $this->forcedNewVisit = false;
         $this->generationTime = false;
         $this->pageCustomVar = false;
-        $this->customParameters = array();
+        $this->customParameters = [];
         $this->customData = false;
         $this->hasCookies = false;
         $this->token_auth = false;
@@ -68,13 +85,13 @@ class LaravelMatomoTracker extends MatomoTracker
         $this->idPageview = false;
 
         // $this->siteId = $this->siteId;
-        $this->urlReferrer = !empty($request->server('HTTP_REFERER')) ? $request->server('HTTP_REFERER') : false;
+        $this->urlReferrer = ! empty($request->server('HTTP_REFERER')) ? $request->server('HTTP_REFERER') : false;
         $this->pageCharset = self::DEFAULT_CHARSET_PARAMETER_VALUES;
         $this->pageUrl = self::getCurrentUrl();
-        $this->ip = !empty($request->server('REMOTE_ADDR')) ? $request->server('REMOTE_ADDR') : false;
-        $this->acceptLanguage = !empty($request->server('HTTP_ACCEPT_LANGUAGE')) ? $request->server('HTTP_ACCEPT_LANGUAGE') : false;
-        $this->userAgent = !empty($request->server('HTTP_USER_AGENT')) ? $request->server('HTTP_USER_AGENT') : false;
-        if (!empty($apiUrl)) {
+        $this->ip = ! empty($request->server('REMOTE_ADDR')) ? $request->server('REMOTE_ADDR') : false;
+        $this->acceptLanguage = ! empty($request->server('HTTP_ACCEPT_LANGUAGE')) ? $request->server('HTTP_ACCEPT_LANGUAGE') : false;
+        $this->userAgent = ! empty($request->server('HTTP_USER_AGENT')) ? $request->server('HTTP_USER_AGENT') : false;
+        if (! empty($apiUrl)) {
             self::$URL = $this->apiUrl;
         }
 
@@ -107,18 +124,18 @@ class LaravelMatomoTracker extends MatomoTracker
         // Allow debug while blocking the request
         $this->requestTimeout = 600;
         $this->doBulkRequests = false;
-        $this->storedTrackingActions = array();
+        $this->storedTrackingActions = [];
 
         $this->sendImageResponse = true;
 
         $this->visitorCustomVar = $this->getCustomVariablesFromCookie();
 
-        $this->outgoingTrackerCookies = array();
-        $this->incomingTrackerCookies = array();
+        $this->outgoingTrackerCookies = [];
+        $this->incomingTrackerCookies = [];
     }
 
     /**
-     * Sets the queue name
+     * Sets the queue name.
      *
      * @param string $queueName
      *
@@ -127,11 +144,12 @@ class LaravelMatomoTracker extends MatomoTracker
     public function setQueue(string $queueName)
     {
         $this->queue = $queueName;
+
         return $this;
     }
 
     /**
-     * Sets a custom dimension
+     * Sets a custom dimension.
      *
      * @param int $customDimensionId
      * @param string $value
@@ -141,10 +159,12 @@ class LaravelMatomoTracker extends MatomoTracker
     public function setCustomDimension($customDimensionId, $value)
     {
         $this->setCustomTrackingParameter('dimension' . $customDimensionId, $value);
+
         return $this;
     }
-     /**
-     * Sets some custom dimensions
+
+    /**
+     * Sets some custom dimensions.
      *
      * @param array $customDimensions Is an array of objects with the fields 'id' and 'value'
      *
@@ -168,7 +188,6 @@ class LaravelMatomoTracker extends MatomoTracker
      */
     private function checkCustomDimension(object $customDimension): bool
     {
-
         if (gettype($customDimension) !== 'object') {
             throw new Exception('Key is not of type object in custom dimension.');
         }
@@ -193,7 +212,7 @@ class LaravelMatomoTracker extends MatomoTracker
     }
 
     /**
-     * Sets some custom variables
+     * Sets some custom variables.
      *
      * @param array $customVariables
      */
@@ -249,7 +268,7 @@ class LaravelMatomoTracker extends MatomoTracker
                 throw new Exception('Scope is not of type string in custom variable.');
             }
 
-            if (!array_search($customVariable->scope, ['visit', 'page'])) {
+            if (! array_search($customVariable->scope, ['visit', 'page'])) {
                 throw new Exception('Scope is not valid in custom variable. Use either \'visit\' or \'page\'');
             }
         }
@@ -351,7 +370,7 @@ class LaravelMatomoTracker extends MatomoTracker
      *
      * @return void
      */
-    public function queueSiteSearch(string $keyword, string $category = '',  $countResults = false)
+    public function queueSiteSearch(string $keyword, string $category = '', $countResults = false)
     {
         dispatch(function () use ($keyword, $category, $countResults) {
             $this->doTrackSiteSearch($keyword, $category, $countResults);
